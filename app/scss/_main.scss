@@ -1,0 +1,47 @@
+.showcase {
+
+    &__container {
+        position: relative;
+    }
+
+    &__image {
+        display: block;
+        margin: auto;
+        width: 100%;
+    }
+
+    &__point {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid orange;
+        border-radius: 20px;
+        background-color: orange;
+        cursor: pointer;
+
+        left: 25%;
+        top: 20%;
+        transition: 0.2s linear;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: white;
+            left: 20%;
+            top: 20%;
+            transition: 0.2s linear;
+        }
+
+        &:hover {
+            transform: scale(1.5);
+
+            &::before {
+                transform: scale(1.5);
+            }
+        }
+    }
+}
