@@ -1,14 +1,16 @@
 @mixin point {
     $point-width: 2rem;
-    animation-name: outline_static_animation;
+    
+    animation-name: point_static_animation;
     animation-duration: 3s;
     animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
 
     position: absolute;
     width: $point-width;
     height: $point-width;
     border-radius: 20px;
-    border: .1rem solid white;
+    border: .1rem solid snow;
     background-color: orange;
     cursor: pointer;
 
@@ -31,14 +33,12 @@
     }*/
 
     &:active {
-        transform: scale(0.8);  
+        animation-play-state: paused;
+        transform: scale(0.8);
     }
 
     &:hover {
         outline: calc($point-width/2) solid orange;
-    }
-
-    @keyframes outline_static_animation {
     }
 }
 
@@ -50,7 +50,29 @@
     &__image {
         display: block;
         margin: auto;
-        width: 100%;
+        width: 70%;
+        position: relative;
+        filter: drop-shadow(0 0 0.5rem orange);
+        //transition: .3s linear;
+
+        animation-name: image_shadow_animation;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: backwards;
+        
+        /*&:hover {
+            filter: drop-shadow(0 0 0.8rem black);
+        }*/
+
+        /*&::before {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            transform: translate(10px, 8px);
+            z-index: -1;
+            background: linear-gradient(180deg, #fff0ba 0.000%, #ffe784 20.000%, #ffd857 40.000%, #ffc532 60.000%, #ffae16 80.000%, #ff9203 100.000%);
+            filter: blur(10px); 
+          }*/
     }
 
     &__point_ring{
@@ -75,5 +97,25 @@
         @include point;
         top: 20%;
         left: 84%;
+    }
+}
+
+@keyframes point_static_animation {
+    0%, 100% { 
+        filter: brightness(1);
+        box-shadow: 0 0 0 0 snow 
+    }
+    50% { 
+        filter: brightness(1.2); 
+        box-shadow: 0 0 5px 5px snow
+    }
+}
+
+@keyframes image_shadow_animation {
+    0%, 100% {
+        filter: drop-shadow(0 0 0.5rem orange)
+    }
+    50% { 
+        filter: drop-shadow(0 0 0.7rem black)
     }
 }

@@ -12,4 +12,11 @@ body {
     padding: 0;
     line-height: 1.3;
     font-family: "Lato", sans-serif;
+
+
+    // background: linear-gradient(180deg, #fff0ba 0.000%, #ffe784 20.000%, #ffd857 40.000%, #ffc532 60.000%, #ffae16 80.000%, #ff9203 100.000%);
+    // Full carbon black-gray gradient
+    background: -webkit-linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), -webkit-linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, -webkit-radial-gradient(at 50% 0, #484847, #090909);
+    background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+    background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
 }
