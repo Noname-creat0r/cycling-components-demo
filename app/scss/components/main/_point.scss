@@ -1,0 +1,48 @@
+@mixin point {
+    animation-name: point_static_animation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
+
+    position: absolute;
+    width: $point-width;
+    height: $point-width;
+    border-radius: 20px;
+    border: .1rem solid snow;
+    background-color: $orange;
+    cursor: pointer;
+
+    outline: $gap-preview-button solid white;
+    outline-offset: calc($point-width/-2);
+
+    transition: .3s linear;
+
+    // Inner circle experiments
+    /*&::before {
+        content: "";
+        position: absolute;
+        width: $point-width /2;
+        height: $point-width /2;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: white;
+        margin: auto 0 auto 0;
+        left: calc($point-width /4);
+        top: calc($point-width /4);
+    }*/
+
+    &::before {
+        content: "";
+        position: absolute;
+    }
+
+    &:active {
+        animation-play-state: paused;
+        transform: scale(0.8);
+    }
+
+    &:hover {
+        outline: calc($point-width/2) solid $orange;
+        animation-play-state: paused;
+    }
+}

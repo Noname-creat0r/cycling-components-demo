@@ -1,0 +1,67 @@
+@import "point";
+@import "description";
+@import "modal";
+
+.showcase {
+    &__container {
+        position: relative;
+        overflow: visible;
+        perspective: 1200px;
+    }
+
+    &__image {
+        display: block;
+        margin: auto;
+        width: 70%;
+        position: relative;
+        filter: drop-shadow(0 0 0.1rem $orange);
+        /* Tilt so back wheel (left) appears same size as front */
+
+        animation-name: image_shadow_animation;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: backwards;
+    }
+
+    &__description {
+
+        &_wheel {
+            @include description;
+       }
+    }
+
+    &__point{
+
+        &_ring {
+            @include point;
+            top: 77%;
+            left: 43%;
+            animation-delay: 6s;   
+        }
+
+        &_aero {
+            @include point;
+            top: 68%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        &_adapter {
+            @include point;
+            top: 29%;
+            left: 69%;
+            animation-delay: 2s;
+        }
+
+        &_wheel {
+            @include point;
+            top: 20%;
+            left: 74%;
+
+            &:hover ~ .showcase__description_wheel {
+                opacity: 1;
+                transform: translateX(1rem);
+            }
+        }
+    }
+}

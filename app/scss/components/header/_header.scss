@@ -1,0 +1,29 @@
+.header {
+    width: 90%;
+    padding: .3rem;
+    margin: 1rem auto;
+    
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* From https://css.glass */
+    background: rgba(233, 131, 66, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.9px);
+    -webkit-backdrop-filter: blur(8.9px);
+    border: 1px solid rgba(233, 131, 66, 0.19);
+
+    &__logo {
+        width: $logo-width;
+        height: $logo-height;
+    }
+
+    &__shortcuts {
+        display: flex;
+        gap: 7rem;
+        padding-right: 4rem;
+    }
+}

@@ -1,0 +1,30 @@
+@keyframes point_static_animation {
+    0%, 100% { 
+        filter: brightness(1);
+        box-shadow: 0 0 0 0 snow 
+    }
+    50% { 
+        filter: brightness(1.2); 
+        box-shadow: 0 0 5px 5px snow
+    }
+}
+
+@keyframes image_shadow_animation {
+    0%, 100% {
+        filter: drop-shadow(0 0 0.1rem orange)
+    }
+    50% { 
+        filter: drop-shadow(0 0 0.7rem black)
+    }
+}
+
+@keyframes description_appearance {
+    0%, 100% {
+        transform: translateX(calc(9rem));
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

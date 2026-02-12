@@ -1,0 +1,25 @@
+@mixin description {
+    position: absolute;
+    top: 20%;
+    left: 77%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0;
+
+    max-width: min(20vw, 20%);
+    overflow-wrap: break-word;
+    height: 9rem;
+
+    transition: 1s ease-in;
+
+    &__img {
+        width: $descr-img-size;
+        height: $descr-img-size;
+        filter: drop-shadow(0 0 .15rem white);
+    }
+}

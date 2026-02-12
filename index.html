@@ -2,21 +2,40 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <link rel="stylesheet" href="dist/style.css">
-
         <title>Test Page</title>
     </head>
     <body>
         <header class="header">
+            <img
+                src="img/logo_no_bg.png"
+                alt="Logo"
+                class="header__logo">
 
+                <div class="header__shortcuts">
+                    <p>Preview</p>
+                    <p>About us</p>
+                    <p>Contacts</p>
+                </div>
         </header>
 
+        <div id="demo-modal" class="modal">
+            <div class="modal__content">
+                <h1>Карбоновый руль</h1>
+                Тут идет описание товара и картинки
+                <div class="modal__footer">
+                    Цена
+                </div>
+                <a href="#" class="modal__close">&times;</a>
+            </div>
+        </div>
+
         <main class="showcase">
-            
+            <div style="height: 15rem;"></div>
+
             <div class="showcase__container">
                 <img 
-                    src="img/preview_no_bg.webp" 
+                    src="img/fixed_bicycle_no_bg.webp" 
                     alt="Bicycle" 
                     class="showcase__image">
 
@@ -37,16 +56,7 @@
                     </a>
                 </div>
 
-                <div id="demo-modal" class="modal">
-                    <div class="modal__content">
-                        <h1>Карбоновый руль</h1>
-                        Тут идет описание товара и картинки
-                        <div class="modal__footer">
-                            Цена
-                        </div>
-                        <a href="#" class="modal__close">&times;</a>
-                    </div>
-                </div>
+               
         </main>
         <footer class="footer">
 
