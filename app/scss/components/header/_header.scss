@@ -9,12 +9,14 @@
     justify-content: space-between;
 
     /* From https://css.glass */
-    background: rgba(233, 131, 66, 0.19);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    //background: rgba(251, 140, 71, 0.19);
+    background: #1f1818;
+    background: linear-gradient(95deg, rgba(31, 24, 24, 0.53) 21%, rgba(249, 115, 22, 0.53) 80%);
+    box-shadow: 0 4px 30px rgba(249, 115, 22, 0.3);
     backdrop-filter: blur(8.9px);
     -webkit-backdrop-filter: blur(8.9px);
-    border: 1px solid rgba(233, 131, 66, 0.19);
+    border-radius: 10px;
+  //  border: 1px solid rgba(251, 140, 71, 0.01);
 
     &__logo {
         width: $logo-width;
@@ -25,5 +27,7 @@
         display: flex;
         gap: 7rem;
         padding-right: 4rem;
+        letter-spacing: 3px;
+        font-family: "involve";
     }
 }

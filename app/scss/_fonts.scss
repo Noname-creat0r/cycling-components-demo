@@ -6,3 +6,10 @@
         url("../app/fonts/Fontick/fontick.ttf") format("truetype"),
         url("../app/fonts/Fontick/fontick.otf") format("opentype");
 }
+
+@font-face {
+    font-family: "involve";
+    src:
+        local("involve"),
+        url("../app/fonts/involve/OTF/Involve-Regular.otf") format("opentype")
+}

@@ -1,5 +1,5 @@
 @mixin point {
-    animation-name: point_static_animation;
+    animation-name: pulse;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-fill-mode: backwards;
@@ -38,11 +38,11 @@
 
     &:active {
         animation-play-state: paused;
-        transform: scale(0.8);
+        transform: scale(0.9);
     }
 
     &:hover {
         outline: calc($point-width/2) solid $orange;
-        animation-play-state: paused;
+        //animation-play-state: paused;
     }
 }
