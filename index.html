@@ -21,11 +21,78 @@
 
         <div id="demo-modal" class="modal">
             <div class="modal__content">
-                <h1>Карбоновый руль</h1>
-                Тут идет описание товара и картинки
-                <div class="modal__footer">
-                    Цена
+                <div class="modal__content__flex">
+                    <div class="carousel">
+                        <input checked type=radio name="slider" id="slide1" />
+                        <input type=radio name="slider" id="slide2" />
+                        <input type=radio name="slider" id="slide3" />
+                        <input type=radio name="slider" id="slide4" />
+                        <input type=radio name="slider" id="slide5" />
+                    
+                        <div class="carousel__slider-wrapper">
+                        <div class=carousel__inner>
+                            <article>
+                                <img 
+                                    class="carousel__inner__img"    
+                                    src="img/wheel/1.jpg" />
+                            </article>
+                            <article>
+                                <img 
+                                    class="carousel__inner__img"
+                                    src="img/wheel/2.jpg" />
+                            </article>
+                            <article>
+                                <img 
+                                    class="carousel__inner__img"
+                                    src="img/wheel/3.jpg" />
+                            </article>
+                            <article>
+                                <img 
+                                    class="carousel__inner__img"
+                                    src="img/wheel/4.jpg" />
+                            </article>
+                            <article>
+                                <img 
+                                    class="carousel__inner__img"
+                                    src="img/wheel/5.jpg" />
+                            </article>
+                        </div>
+                        <!-- .inner -->
+                        </div>
+                        <!-- .slider-wrapper -->
+                    
+                        <div class="carousel__slider-prev-next-control">
+                        <label for=slide1></label>
+                        <label for=slide2></label>
+                        <label for=slide3></label>
+                        <label for=slide4></label>
+                        <label for=slide5></label>
+                        </div>
+                        <!-- .slider-prev-next-control -->
+                    
+                        <div class="carousel__slider-dot-control">
+                        <label for=slide1></label>
+                        <label for=slide2></label>
+                        <label for=slide3></label>
+                        <label for=slide4></label>
+                        <label for=slide5></label>
+                        </div>
+                        <!-- .slider-dot-control -->
+                    </div>
+                    
+                    <div class="modal__content__column">
+                        <h1 class=modal__content__title>Карбоновый руль</h1>
+                        <div class="modal__content__description">
+                            Карбоновый аэродинамический руль-приставка Model-1 
+                        </div>
+                        <button class="modal__content__price">200$</button>
+                    </div>
+
                 </div>
+
+                <!--<div class="modal__footer">
+                    Цена
+                </div>-->
                 <a href="#" class="modal__close">&times;</a>
             </div>
         </div>

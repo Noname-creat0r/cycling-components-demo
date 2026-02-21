@@ -1,3 +1,5 @@
+@import "carousel";
+
 .modal {
     visibility: hidden;
     opacity: 0;
@@ -16,12 +18,57 @@
     &__content {
         border-radius: 4px;
         position: relative;
-        width: 500px;
+        width: 800px;
         max-width: 90%;
         background: #26201e;
         padding: 1em 2em;
         box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
 
+        color: whitesmoke;
+
+        &__flex {
+            display: flex;
+        }
+
+        &__column {
+            display: flex;
+            flex-direction: column;
+            margin-left: 2em;
+            flex: 0 0 35%;
+
+        }
+
+        &__title {
+
+        }
+
+        &__description {
+            font-family: "involve";
+            flex: .90;
+        }
+
+        &__price {
+            font-family: "involve";
+            font-size: 1.3rem;
+            text-shadow: #ffcc00 1px 0 10px;
+            
+            border-radius: 20px;
+            border: .05rem solid $orange;
+            background-color: transparent;
+            box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
+            color: white;
+            
+            width: 50%;
+            margin: auto;
+
+            transition: all .4s;
+
+            &:hover {
+                background-color: ghostwhite;
+                color: $orange;
+                border: .05rem solid transparent;
+            }
+        }
     }
 
     &__close {
