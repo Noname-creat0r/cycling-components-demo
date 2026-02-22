@@ -1,25 +1,59 @@
 @mixin description {
+    font-family: "involve";
+
     position: absolute;
-    top: 20%;
-    left: 77%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
+    visibility: hidden;
     color: white;
     font-size: 0.8rem;
     opacity: 0;
+    border-radius: 20px;
+    border: 1px solid $orange;
+    box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
+    background: rgba($color: #000000, $alpha: .7);
+    padding: 1rem;
 
     max-width: min(20vw, 20%);
     overflow-wrap: break-word;
-    height: 9rem;
+    height: 10rem;
 
-    transition: 1s ease-in;
+    transition: opacity .3s ease-in 3s, transform .3s ease-out 3s, visibility .3s ease-in 3s;
 
     &__img {
         width: $descr-img-size;
         height: $descr-img-size;
-        filter: drop-shadow(0 0 .15rem white);
+        filter: drop-shadow(0 0 .15rem gray);
     }
+
+    &__button {
+        text-shadow: #ffcc00 1px 0 10px;
+        
+        border-radius: 10px;
+        border: .05rem solid $orange;
+        background-color: transparent;
+        box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
+        color: white;
+        text-decoration: none;
+        
+        padding: .2rem;
+        margin-top: .7rem;
+        width: 80%;
+        text-align: center;
+
+        cursor: pointer;
+
+        transition: all .4s;
+
+        &:hover {
+            background-color: ghostwhite;
+            color: $orange;
+            border: .05rem solid transparent;
+        }
+    }
+
+   
 }
