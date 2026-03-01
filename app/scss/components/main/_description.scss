@@ -21,7 +21,14 @@
     overflow-wrap: break-word;
     height: 10rem;
 
-    transition: opacity .3s ease-in 3s, transform .3s ease-out 3s, visibility .3s ease-in 3s;
+    //transition: opacity .3s ease-in 3s, transform .3s ease-out 3s, visibility .3s ease-in 3s;
+
+     &.active {
+        visibility: visible;
+        opacity: 1;
+        transition: all .4s;
+         transform: translateX(.5rem);
+    }
 
     &__img {
         width: $descr-img-size;

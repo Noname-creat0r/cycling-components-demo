@@ -8,6 +8,14 @@
         overflow: visible;
         perspective: 1200px;
         display: flex;
+        
+        @media (max-width: $tablet) {
+            perspective: 800px;
+        }
+        
+        @media (max-width: $mobile) {
+            perspective: 600px;
+        }
     }
 
     &__image {
@@ -16,120 +24,228 @@
         width: 70%;
         position: relative;
         filter: drop-shadow(0 0 0.1rem $orange);
-        /* Tilt so back wheel (left) appears same size as front */
-
+        
         animation-name: image_shadow_animation;
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-fill-mode: backwards;
+        
+        @media (max-width: $tablet) {
+            width: 85%;
+        }
+        
+        @media (max-width: $mobile) {
+            width: 95%;
+        }
     }
 
     &__description {
-
-        &_wheel {
+        // Общие стили для всех описаний
+        &_wheel, &_fitter, &_adapter, &_axis, &_ring {
             @include description;
+            
+            @media (max-width: $tablet) {
+                max-width: min(30vw, 200px);
+                height: auto;
+                min-height: 8rem;
+                padding: 0.8rem;
+                font-size: 0.7rem;
+            }
+            
+            @media (max-width: $mobile) {
+                max-width: min(40vw, 150px);
+                min-height: 6rem;
+                padding: 0.5rem;
+                font-size: 0.6rem;
+                
+                &__img {
+                    width: calc($descr-img-size * 0.6);
+                    height: calc($descr-img-size * 0.6);
+                }
+                
+                &__button {
+                    padding: 0.1rem;
+                    margin-top: 0.4rem;
+                    font-size: 0.6rem;
+                }
+            }
+        }
+
+        // Индивидуальные позиции для разных экранов
+        &_wheel {
             top: 20%;
             left: 75%;
+            
+            @media (max-width: $tablet) {
+                top: 15%;
+                left: 70%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 10%;
+                left: 65%;
+            }
         }
 
         &_fitter {
-            @include description;
             top: 30%;
             left: 65%;
+            
+            @media (max-width: $tablet) {
+                top: 25%;
+                left: 60%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 20%;
+                left: 55%;
+            }
         }
 
         &_adapter {
-            @include description;
             top: -7%;
             left: 55%;
+            
+            @media (max-width: $tablet) {
+                top: -3%;
+                left: 50%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 0%;
+                left: 45%;
+            }
         }
 
         &_axis {
-            @include description;
             top: 60%;
             left: 80%;
+            
+            @media (max-width: $tablet) {
+                top: 55%;
+                left: 79%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 50%;
+                left: 78%;
+            }
         }
 
         &_ring {
-            @include description;
             top: 73%;
             left: 27%;
-       }
-    }
-
-    &__point{
-
-        &_ring {
-            @include point;
-            top: 77%;
-            left: 43%;
-            animation-delay: 6s;   
-
-            &:hover ~ .showcase__description_ring {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(.5rem);
-                transition-delay: 0s;
+            
+            @media (max-width: $tablet) {
+                top: 68%;
+                left: 25%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 63%;
+                left: 20%;
             }
 
-           
+            
         }
+    }
 
-        &_axis {
+    &__point {
+        &_ring, &_axis, &_adapter, &_fitter, &_wheel {
             @include point;
+            
+            @media (max-width: $tablet) {
+                width: calc($point-width * 0.8);
+                height: calc($point-width * 0.8);
+            }
+            
+            @media (max-width: $mobile) {
+                width: calc($point-width * 0.6);
+                height: calc($point-width * 0.6);
+                outline-offset: calc(($point-width * 0.6)/-2);
+                outline-width: 0.24rem;
+            }
+        }
+        
+        &_ring {
+            top: 77%;
+            left: 43%;
+            animation-delay: 6s;
+
+            @media (max-width: $tablet) {
+                top: 75%;
+                left: 42%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 73%;
+                left: 41%;
+            }
+
+            
+        }
+        
+        &_axis {
             top: 68%;
             left: 70%;
             animation-delay: 4s;
-
-            &:hover ~ .showcase__description_axis {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(.5rem);
-                transition-delay: 0s;
+            
+            @media (max-width: $tablet) {
+                top: 66%;
+                left: 74%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 64%;
+                left: 75%;
             }
         }
-
+        
         &_adapter {
-            @include point;
             top: 18%;
             left: 65%;
             animation-delay: 2s;
-
-            &:hover ~ .showcase__description_adapter {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(.5rem);
-                transition-delay: 0s;
+            
+            @media (max-width: $tablet) {
+                top: 16%;
+                left: 65%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 15%;
+                left: 70%;
             }
         }
-
+        
         &_fitter {
-            @include point;
             top: 17%;
             left: 69%;
             animation-delay: 2s;
-
-            &:hover ~ .showcase__description_fitter {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(.5rem);
-                transition-delay: 0s;
+            
+            @media (max-width: $tablet) {
+                top: 15%;
+                left: 72%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 15%;
+                left: 76%;
             }
         }
-
+        
         &_wheel {
-            @include point;
             top: 6%;
             left: 72%;
-
-            &:hover ~ .showcase__description_wheel {
-                visibility: visible;
-                opacity: 1;
-                transform: translateX(.5rem);
-                transition-delay: 0s;
+            
+            @media (max-width: $tablet) {
+                top: 5%;
+                left: 74%;
+            }
+            
+            @media (max-width: $mobile) {
+                top: 4%;
+                left: 78%;
             }
         }
     }
-
- 
 }

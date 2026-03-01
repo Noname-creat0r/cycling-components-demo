@@ -36,8 +36,32 @@
 
         color: whitesmoke;
 
+        @media (max-width: $tablet) {
+            padding: 0.8em 1.5em;
+            max-width: 95%;
+        }
+        
+        @media (max-width: $mobile) {
+            padding: 0.5em 1em;
+            max-width: 98%;
+        }
+
         &__flex {
             display: flex;
+            
+            @media (max-width: $tablet) {
+                flex-direction: column;
+
+                .carousel {
+                    order: 2;       
+                    margin-top: 1.5rem; 
+                }
+                
+                .modal__content__column {
+                    order: 1;       
+                    margin-left: 0; 
+                }
+            }
         }
 
         &__column {
@@ -46,10 +70,33 @@
             margin-left: 2em;
             flex: 0 0 45%;
             max-height: 600px;
+            
+            @media (max-width: $tablet) {
+                margin-left: 0;
+                margin-top: 1.5em;
+                max-height: none;
+            }
+
+            @media (max-width: $mobile) {
+                .modal__content__title {
+                    font-size: 1.2rem;
+                }
+                
+                .modal__content__description {
+                    font-size: 0.9rem;  
+                }
+                
+                .modal__content__price {
+                    font-size: 1.1rem;
+                    width: 70%;
+                }
+            }
         }
 
         &__title {
-
+            @media (max-width: $mobile) {
+                font-size: 1.2rem;
+            }
         }
 
         &__description {
@@ -57,6 +104,15 @@
             flex: .90;
             min-height: 0;
             overflow-y: auto;
+            
+            @media (max-width: $tablet) {
+                max-height: 200px;
+            }
+            
+            @media (max-width: $mobile) {
+                max-height: 150px;
+                font-size: 0.8rem;
+            }
         }
 
         &__price {
@@ -76,6 +132,11 @@
 
             transition: all .4s;
 
+            @media (max-width: $mobile) {
+                font-size: 1rem;
+                width: 30%;
+            }
+
             &:hover {
                 background-color: ghostwhite;
                 color: $orange;
@@ -90,6 +151,12 @@
         right: 10px;
         color: #585858;
         text-decoration: none;
+        
+        @media (max-width: $mobile) {
+            top: 5px;
+            right: 5px;
+            font-size: 1.5rem;
+        }
     }
 
     &:target {

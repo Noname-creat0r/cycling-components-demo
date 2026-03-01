@@ -21,6 +21,16 @@
     &__logo {
         width: $logo-width;
         height: $logo-height;
+
+        @media (max-width: $tablet) {
+            width: calc($logo-width * 0.8);
+            height: calc($logo-height * 0.8);
+        }
+        
+        @media (max-width: $mobile) {
+            width: calc($logo-width * 0.6);
+            height: calc($logo-height * 0.6);
+        }
     }
 
     &__shortcuts {
@@ -29,5 +39,24 @@
         padding-right: 4rem;
         letter-spacing: 3px;
         font-family: "involve";
+
+         @media (max-width: $large-desktop) {
+            gap: 4rem;
+            padding-right: 2rem;
+        }
+        
+        @media (max-width: $tablet) {
+            gap: 2rem;
+            padding-right: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: $mobile) {
+            gap: 1rem;
+            padding-right: 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
     }
 }
