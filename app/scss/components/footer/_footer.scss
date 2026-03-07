@@ -1,0 +1,117 @@
+.footer {
+    margin-top: 15rem;
+    padding-bottom: 2rem;
+    
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+
+    @media (max-width: $tablet) {
+        margin-top: 10rem;
+    }
+    
+    @media (max-width: $mobile) {
+        margin-top: 5rem;
+    }
+
+
+    &__social {
+        width: $social-width;
+        height: $social-height;
+        background: white;
+        border-radius: 90%;
+    }
+
+      
+    ul {
+        display: flex;
+        position: relative;
+    
+         @media (max-width: $mobile) {
+            gap: 0.5rem;
+        }
+
+        li {
+            list-style: none;
+    
+            a {
+                width: 80px;
+                height: 80px;
+                background-color: #fff;
+                text-align: center;
+                line-height: 80px;
+                font-size: 35px;
+                margin: 0 10px;
+                display: block;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
+                border: 3px solid #fff;
+                z-index: 1;
+    
+                @media (max-width: $tablet) {
+                    width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 25px;
+                    margin: 0 5px;
+                }
+                
+                @media (max-width: $mobile) {
+                    width: 45px;
+                    height: 45px;
+                    line-height: 45px;
+                    font-size: 20px;
+                    margin: 0 3px;
+                }
+
+                .icon {
+                    position: relative;
+                    top: 25%;
+                    color: #262626;
+                    transition: .5s;
+                    z-index: 3;
+                }
+    
+                &:hover .icon {
+                    color: #fff;
+                    transform: rotateY(360deg);
+                }
+    
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: #f00;
+                    transition: .5s;
+                    z-index: 2;
+                }
+    
+                &:hover::before {
+                    top: 0;
+                }
+            }
+    
+            &:nth-child(1) a::before {
+                background: palevioletred;
+            }
+    
+            &:nth-child(2) a::before {
+                background: #55acee;
+            }
+    
+            &:nth-child(3) a::before {
+                background: green;
+            }
+    
+            &:nth-child(4) a::before {
+                background: #dd4b39;
+            }
+        }
+    }
+
+}

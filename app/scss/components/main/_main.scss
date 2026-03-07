@@ -3,6 +3,8 @@
 @import "modal";
 
 .showcase {
+    margin-top: 10rem;
+
     &__container {
         position: relative;
         overflow: visible;
@@ -45,9 +47,9 @@
             @include description;
             
             @media (max-width: $tablet) {
-                max-width: min(30vw, 200px);
+                max-width: min(20vw, 140px);
                 height: auto;
-                min-height: 8rem;
+                min-height: 5rem;
                 padding: 0.8rem;
                 font-size: 0.7rem;
             }
@@ -104,11 +106,11 @@
 
         &_adapter {
             top: -7%;
-            left: 55%;
+            left: 50%;
             
             @media (max-width: $tablet) {
                 top: -3%;
-                left: 50%;
+                left: 40%;
             }
             
             @media (max-width: $mobile) {

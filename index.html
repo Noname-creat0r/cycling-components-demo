@@ -8,6 +8,7 @@
         <title>Test Page</title>
     </head>
     <body>
+        
         <header class="header">
             <img
                 src="img/logo_no_bg.png"
@@ -15,9 +16,8 @@
                 class="header__logo">
 
                 <div class="header__shortcuts">
-                    <p>Preview</p>
-                    <p>About us</p>
-                    <p>Contacts</p>
+                    <p id="up">Наверх</p>
+                    <p id="contacts">Контакты</p>
                 </div>
         </header>
 
@@ -26,12 +26,12 @@
                 <div class="modal__content__flex">
                     <div class="carousel">
                         <input checked type=radio name="slider" id="slide1" />
-                        <input type=radio name="slider" id="slide2" />
-                        <input type=radio name="slider" id="slide3" />
-                        <input type=radio name="slider" id="slide4" />
-                        <input type=radio name="slider" id="slide5" />
+                        <input type=radio name="slider" id="slide2"/>
+                        <input type=radio name="slider" id="slide3"/>
+                        <input type=radio name="slider" id="slide4"/>
+                        <input type=radio name="slider" id="slide5"/>
                     
-                        <div class="carousel__slider-wrapper">
+                    <div class="carousel__slider-wrapper">
                         <div class=carousel__inner>
                             <article>
                                 <img 
@@ -59,36 +59,45 @@
                                     src="img/carousel/wheel/5.jpg" />
                             </article>
                         </div>
-                        </div>
+                    </div>
                         <!-- .slider-wrapper -->
                     
                         <div class="carousel__slider-prev-next-control">
-                        <label for=slide1></label>
-                        <label for=slide2></label>
-                        <label for=slide3></label>
-                        <label for=slide4></label>
-                        <label for=slide5></label>
+                            <label for=slide1></label>
+                            <label for=slide2></label>
+                            <label for=slide3></label>
+                            <label for=slide4></label>
+                            <label for=slide5></label>
                         </div>
                         <!-- .slider-prev-next-control -->
                     
                         <div class="carousel__slider-dot-control">
-                        <label for=slide1></label>
-                        <label for=slide2></label>
-                        <label for=slide3></label>
-                        <label for=slide4></label>
-                        <label for=slide5></label>
+                            <label for=slide1></label>
+                            <label for=slide2></label>
+                            <label for=slide3></label>
+                            <label for=slide4></label>
+                            <label for=slide5></label>
                         </div>
                         <!-- .slider-dot-control -->
                     </div>
                     
                     <div class="modal__content__column">
-                        <h1 class=modal__content__title>Карбоновый руль</h1>
+                        <h1 class=modal__content__title>
+                            Карбоновый руль
+                        </h1>
                         <div class="modal__content__description">
                             Карбоновый аэродинамический руль-приставка для ТТ велосипедов – это эргономичная, разработанная с учетом анатомии предплечья руки, замена стандартным приставкам круглого сечения. Установка руля Model-1 создает аэродинамическое преимущество за счет идеального примыкания предплечья гонщика к рулю и созданию, таким образом, единой аэродинамической системы. Эффект такой системы выражается в значительной экономии мощности гонщика на преодоление сопротивление воздуха. Особенно эффективно, при правильно выставленной посадке велогонщика на ТТ велосипеде.
 При езде на стандартных рулях-приставках, рука имеет только 2 точки опоры: кисть и локоть. Распределённая таким образом нагрузка иногда создает болевые ощущения и дискомфорт в точках опоры. В рулях Model-1 нагрузка равномерно распределяется по всей длине руля тем самым уменьшая давление, доставляя комфорт и удовольствие от быстрой езды на ТТ велосипеде.
- 
                         </div>
-                        <button class="modal__content__price">200$</button>
+                        <div class="modal__version-selector">
+                            <span class="modal__version-label">Выберите версию:</span>
+                            <select id="versionSelect" class="modal__version-select">
+                                <!-- опции будут добавлены скриптом -->
+                            </select>
+                        </div>
+                        <button class="modal__content__price">
+                            200$
+                        </button>
                     </div>
 
                 </div>
@@ -96,12 +105,27 @@
                 <!--<div class="modal__footer">
                     Цена
                 </div>-->
-                <a href="#" class="modal__close">&times;</a>
+
+                <a href="#" class="modal__close">
+                    &times;
+                </a>
             </div>
         </div>
 
-        <main class="showcase">
-            <div style="height: 15rem;"></div>
+       <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Карбоновая аэродинамика<br>для твоего велосипеда</h1>
+                <p class="hero__subtitle">
+                    Высокотехнологичные компоненты PACYCLING – рули, колёса, адаптеры и эксцентрики, разработанные для гонок и триатлона. Минимальный вес, максимальная жёсткость и аэродинамическая эффективность.
+                </p>
+                <a href="#catalog" class="hero__cta">Интерактивный каталог</a>
+            </div>
+            <div class="hero__image">
+                <img src="img/photo-collage.png.png" alt="Велосипед с карбоновыми компонентами">
+            </div>
+         </section>
+
+        <main class="showcase" id="catalog">
 
             <div class="showcase__container">
                 <img 
@@ -174,8 +198,10 @@
                         More
                     </a>
                 </div>
-               
+
+            </div>
         </main>
+
         <footer class="footer">
             <ul>
                 <li>
@@ -202,5 +228,7 @@
         </footer>
         <script src="app/js/transition.js"></script>
         <script src="app/js/modal.js"></script>
+        <script src="app/js/misc.js"></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </body>
 </html>
