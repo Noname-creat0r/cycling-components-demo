@@ -9,7 +9,7 @@
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    //justify-content: space-between;
 
     /* From https://css.glass */
     //background: rgba(251, 140, 71, 0.19);
@@ -21,9 +21,47 @@
     border-radius: 10px;
   //  border: 1px solid rgba(251, 140, 71, 0.01);
 
+    .language-switcher {
+        display: flex;
+        gap: 0.5rem;
+        
+        .lang-btn {
+            background: transparent;
+            border: 1px solid $orange;
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            color: white;
+            font-family: "involve";
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            
+            &:hover {
+                background: $orange;
+                color: black;
+            }
+            
+            &.active {
+                background: $orange;
+                color: black;
+                box-shadow: 0 0 10px rgba($orange, 0.5);
+            }
+        }
+            
+        @media (max-width: $mobile) {
+            .lang-btn {
+                font-size: 0.7rem;
+                padding: 0.1rem 0.5rem;
+            }
+        }
+    }
+
+   
+
     &__logo {
         width: $logo-width;
         height: $logo-height;
+        flex-shrink: 0;
 
         @media (max-width: $tablet) {
             width: calc($logo-width * 0.8);
@@ -38,6 +76,10 @@
 
     &__shortcuts {
         display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+        align-items: center;
+        //margin-left: auto;
         gap: 7rem;
         padding-right: 4rem;
         letter-spacing: 3px;
@@ -45,6 +87,7 @@
 
         p {
             cursor: pointer;
+            white-space: nowrap;
             transition: color 0.3s ease, text-shadow 0.3s ease;
 
             &:hover {
@@ -53,6 +96,7 @@
              }
         }
 
+        
         @media (max-width: $large-desktop) {
             gap: 4rem;
             padding-right: 2rem;

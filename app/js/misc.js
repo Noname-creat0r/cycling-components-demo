@@ -16,14 +16,4 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-            {
-                pageLanguage: 'ru', // Язык вашего сайта (русский)
-                includedLanguages: 'en,de,fr,es,it,zh-CN,ja', // Какие языки добавить
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE // Компактный вид
-            },
-            'google_translate_element'
-        );
-    }
 })();

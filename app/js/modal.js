@@ -1,112 +1,24 @@
 // Скрипт для динамического обновления контента в модальном окне
 (function() {
-    
-    // Данные для каждой детали (ключ соответствует суффиксу класса)
-    const detailsData = {
-        wheel: {
-            versions: [
-                {
-                    title: 'Карбоновый руль Model-1',
-                    versionTitle: "Model - 1",
-                    description: 'Карбоновый аэродинамический руль-приставка для ТТ велосипедов – это эргономичная, разработанная с учетом анатомии предплечья руки, замена стандартным приставкам круглого сечения. Установка руля Model-1 создает аэродинамическое преимущество за счет идеального примыкания предплечья гонщика к рулю и созданию, таким образом, единой аэродинамической системы. Эффект такой системы выражается в значительной экономии мощности гонщика на преодоление сопротивление воздуха. Особенно эффективно, при правильно выставленной посадке велогонщика на ТТ велосипеде. При езде на стандартных рулях-приставках, рука имеет только 2 точки опоры: кисть и локоть. Распределённая таким образом нагрузка иногда создает болевые ощущения и дискомфорт в точках опоры. В рулях Model-1 нагрузка равномерно распределяется по всей длине руля тем самым уменьшая давление, доставляя комфорт и удовольствие от быстрой езды на ТТ велосипеде',
-                    price: "600$",
-                    images: [
-                        'img/carousel/wheel/v1/1.jpg',
-                        'img/carousel/wheel/v1/2.jpg',
-                        'img/carousel/wheel/v1/3.jpg',
-                        'img/carousel/wheel/v1/4.jpg',
-                        'img/carousel/wheel/v1/5.jpg'
-                    ]
-                },
-                {
-                    title: 'Карбоновый руль Model-2',
-                    versionTitle: "Model-2",
-                    description: 'Model-2 является продолжением разработки и усовершенствования уже отлично зарекомендовавшей себя модели «Model-1». Новый Model-2 разработан в соответствии со вступившими в силу обновленными техническими регламентами UCI c 1 января 2026 года. Его улучшенная эргономика и аэродинамический эффект уже испытан в стартах национального Чемпионата Беларуси в гонках TT и на треке. В этой модели увеличены длина и объем подлокотника, что лучше подходит для более рослых гонщиков, по сравнению с Model-1.',
-                    price: "700$",
-                    images: [
-                        'img/carousel/wheel/v2/1.png',
-                        'img/carousel/wheel/v2/2.png',
-                        'img/carousel/wheel/v2/3.png',
-                
-                    ]
-                }
-            ]
-        },
-        ring: {
-            versions: [
-                {
-                    title: 'Звезда',
-                    versionTitle: "V1",
-                    description: 'Звездочки Ring-1 для шоссейных и трековых велосипедов – это аэродинамические передние звездочки для соревнований, в том числе для гонок на треке, гонок на время и триатлону. Изготовленные из алюминия и усиленные карбоновой подложкой, звезды Ring-1 имеют гладкий утолщенный внешний профиль, который находится в одной плоскости с цепью, что помогает воздушному потоку гладко, без препятствий, обтекать поверхность при переходе с цепи на звезду. Созданный таким образом аэродинамический эффект может достигать до 5Вт, в зависимости от направления потока воздуха.',
-                    price: "120$",
-                    images: [
-                        'img/carousel/ring/1.jpg',
-                        'img/carousel/ring/2.jpg',
-                        'img/carousel/ring/3.jpg'
-                    ]
-                }
-            ]
-        },
-        axis: {
-            versions: [
-                {
-                    title: 'Аэроэксцентрик',
-                    versionTitle: "V1",
-                    description: 'Обычный эксцентриковый зажим – один из самых недооцененных компонентов в велосипеде с ободными тормозами. Это простое устройство, задача которого удерживать колеса в дропаутах вилки, часто остается без внимания как у производителей велосипедов и колес, так и у потребителей. Стандартные быстросъемные эксцентриковые зажимы имеют значительное лобовое сопротивление потоку воздуха, поэтому он нуждается в улучшении аэродинамики. Аэроэксцентрики AluTi – это аэродинамическая конструкция эксцентрика, состоящая из трех компонентов: двух минималистичных дюралевых шайб и одним специально изготовленным титановым болтом, с зажимом обычным шестигранником. Это простая конструкция, но она имеет ряд значительных преимуществ относительно стандартных эксцентриков. Во-первых, AliTi защищает дропауты вилки, предотвращая их от повреждения при затягивании. На наших эксцентриках обе шайбы имеют фиксаторы положения, поэтому они просто устанавливаются в осевую прорезь вилки, а затем сквозной титановый болт затягивает систему без любого скольжения по вилке. Это особенно важно для велосипедов с полностью карбоновыми дропаутами. Во-вторых, согласно измерительным тестам, пара эксцентриков AluTi позволяет сэкономить 3-4 ватта мощности гонщика. Это делает их одним из самых экономически выгодных вариантов улучшения аэродинамики. Более того, каждый компонент эксцентриков TriRig Styx изготовлен из легких материалов: чистого титана ВТ1-00 и дюралюминия Д16Т, что обеспечивает исключительную прочность, долговечность, коррозионную стойкость и сверхмалый вес. Весь комплект весит всего 50 грамм, что примерно на 100 грамм меньше, чем у стандартных эксцентриков для тренировок. Это небольшое улучшение для любого триатлонного или шоссейного велосипеда и самый экономически выгодный способ улучшить аэродинамику, внешний вид и вес вашего велосипеда.',
-                    price: "40$",
-                    images: [
-                        'img/carousel/axis/1.jpg',
-                        'img/carousel/axis/2.jpg',
-                        'img/carousel/axis/3.jpg'
-                    ]
-                }
-            ]
-        },
-        adapter: {
-            versions: [
-                {
-                    title: 'Переходники',
-                    versionTitle: "V1",
-                    description: 'Руль-приставка Model-1 может быть адаптирована практически к каждому ТТ велосипеду. Для этого необходимо подобрать правильный переходник из уже разработанных. В случае если такого переходника нет в нашем портфолио, наши специалисты помогут его спроектировать и произвести. В зависимости от уровня сложности и Вашего запроса переходники могут быть изготовлены из карбона либо из дюралюминия, применяемого в авиастроении.',
-                    price: "50$",
-                    images: [
-                        'img/carousel/adapter/1.jpg',
-                        'img/carousel/adapter/2.jpg',
-                        'img/carousel/adapter/3.jpg',
-                        'img/carousel/adapter/4.jpg',
-                        'img/carousel/adapter/5.jpg'
-                    ]
-                }
-            ]
-        },
-        fitter: {
-            versions: [
-                {
-                    title: 'Подставки',
-                    versionTitle: "V1",
-                    description: 'Проставки предназначены для идеальной подгонки положения аэроруля-приставки под посадку велогонщика на ТТ велосипеде. При этом обеспечивается значительное преимущество за счет идеальной формы проставок с минимальным аэродинамическим сопротивлением и за счет жесткости конструкции. Простаки могут быть разработаны под абсолютно любой тип руля. При этом используется либо карбон, либо технология 3D печати',
-                    price: "30$",
-                    images: [
-                        'img/carousel/fitters/1.jpg',
-                        'img/carousel/fitters/2.jpg',
-                        'img/carousel/fitters/3.jpg',
-                        'img/carousel/fitters/4.jpg',
-                        'img/carousel/fitters/5.jpg'
-                    ]
-                }
-            ]
-        }
-    };
 
-      const modal = document.getElementById('demo-modal');
+    // Получаем данные из переводов
+    const getDetails = () => window.translation.details();
+
+    // Функция получения версий для конкретной детали
+    function getVersions(detailKey) {
+        const details = getDetails();
+        return details[detailKey] ? details[detailKey].versions : [];
+    }
+
+    const modal = document.getElementById('demo-modal');
     const modalTitle = document.querySelector('.modal__content__title');
     const modalDesc = document.querySelector('.modal__content__description');
     const modalPrice = document.querySelector('.modal__content__price');
     const closeBtn = document.querySelector('.modal__close');
     const versionSelect = document.getElementById('versionSelect');
 
-    let currentDetailKey = null;      // текущий ключ детали (wheel, ring...)
-    let currentVersions = [];          // массив версий для текущей детали
+    let currentDetailKey = null;
+    let currentVersions = [];
 
     function openModal() {
         if (modal) modal.classList.add('modal--open');
@@ -125,22 +37,23 @@
     }
 
     // Заполнение селектора опциями
-   function populateVersionSelector(versions) {
+    function populateVersionSelector(versions) {
         if (!versionSelect) return;
         versionSelect.innerHTML = '';
         versions.forEach((version, index) => {
             const option = document.createElement('option');
             option.value = index;
-            option.textContent = version.versionTitle;
+            // Используем versionTitle, если есть, иначе title
+            option.textContent = version.versionTitle || version.title;
             versionSelect.appendChild(option);
         });
-        
+
         const selectorContainer = document.querySelector('.modal__version-selector');
         if (versions.length > 0) {
             versionSelect.selectedIndex = 0;
             updateModalWithVersion(versions[0]);
         }
-        
+
         // Скрываем контейнер, если версия только одна
         if (selectorContainer) {
             if (versions.length <= 1) {
@@ -161,23 +74,23 @@
         });
     }
 
-    // Функция загрузки детали по ключу
+    // Функция загрузки детали по ключу (использует данные из переводов)
     function loadDetail(detailKey) {
-        const detail = detailsData[detailKey];
-        if (!detail || !detail.versions || detail.versions.length === 0) return;
+        const versions = getVersions(detailKey);
+        if (!versions || versions.length === 0) return;
 
         currentDetailKey = detailKey;
-        currentVersions = detail.versions;
+        currentVersions = versions;
 
         populateVersionSelector(currentVersions);
     }
 
-    // Переопределяем fillModal, чтобы он использовал loadDetail
+    // fillModal – публичная функция для вызова извне
     function fillModal(detailKey) {
         loadDetail(detailKey);
     }
 
-    // Обработчики кликов на точки и кнопки More
+    // Обработчики кликов на точки
     const points = document.querySelectorAll('[class^="showcase__point_"]');
     points.forEach(point => {
         point.addEventListener('click', (e) => {
@@ -190,6 +103,7 @@
         });
     });
 
+    // Обработчики на кнопки "More"
     const moreButtons = document.querySelectorAll('[class^="showcase__description_"][class*="__button"]');
     moreButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -230,43 +144,39 @@
         }
     });
 
-    // Функция перестройки карусели под нужное количество изображений
+    // Функция перестройки карусели
     function rebuildCarousel(images) {
         const carouselContainer = document.querySelector('.modal__content__flex .carousel');
         if (!carouselContainer) return;
-    
+
         const count = images.length;
         if (count === 0) return;
-    
-        // Очищаем контейнер
+
         carouselContainer.innerHTML = '';
-    
-        // Создаём обёртку слайдера
+
         const sliderWrapper = document.createElement('div');
         sliderWrapper.className = 'carousel__slider-wrapper';
-    
+
         const inner = document.createElement('div');
         inner.className = 'carousel__inner';
         inner.style.width = `${count * 100}%`;
         inner.style.transition = 'margin-left 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
-    
-        // Добавляем слайды
+
         images.forEach((src) => {
             const article = document.createElement('article');
             article.style.width = `${100 / count}%`;
-    
+
             const img = document.createElement('img');
             img.src = src;
             img.className = 'carousel__inner__img';
             article.appendChild(img);
-    
+
             inner.appendChild(article);
         });
-    
+
         sliderWrapper.appendChild(inner);
         carouselContainer.appendChild(sliderWrapper);
-    
-        // Создаём контейнер для стрелок
+
         const arrowsContainer = document.createElement('div');
         arrowsContainer.className = 'carousel__slider-prev-next-control';
         arrowsContainer.style.position = 'absolute';
@@ -277,9 +187,8 @@
         arrowsContainer.style.justifyContent = 'space-between';
         arrowsContainer.style.padding = '0 10px';
         arrowsContainer.style.boxSizing = 'border-box';
-        arrowsContainer.style.pointerEvents = 'none'; // чтобы клики проходили сквозь контейнер
-    
-        // Кнопка "Назад"
+        arrowsContainer.style.pointerEvents = 'none';
+
         const prevBtn = document.createElement('button');
         prevBtn.textContent = '❮';
         prevBtn.style.pointerEvents = 'auto';
@@ -296,8 +205,7 @@
         prevBtn.style.transition = 'opacity 0.3s';
         prevBtn.addEventListener('mouseenter', () => { prevBtn.style.opacity = '1'; });
         prevBtn.addEventListener('mouseleave', () => { prevBtn.style.opacity = '0.7'; });
-    
-        // Кнопка "Вперёд"
+
         const nextBtn = document.createElement('button');
         nextBtn.textContent = '❯';
         nextBtn.style.pointerEvents = 'auto';
@@ -314,19 +222,18 @@
         nextBtn.style.transition = 'opacity 0.3s';
         nextBtn.addEventListener('mouseenter', () => { nextBtn.style.opacity = '1'; });
         nextBtn.addEventListener('mouseleave', () => { nextBtn.style.opacity = '0.7'; });
-    
+
         arrowsContainer.appendChild(prevBtn);
         arrowsContainer.appendChild(nextBtn);
         carouselContainer.appendChild(arrowsContainer);
-    
-        // Точки (dots)
+
         const dotsContainer = document.createElement('div');
         dotsContainer.className = 'carousel__slider-dot-control';
         dotsContainer.style.position = 'absolute';
         dotsContainer.style.bottom = '10px';
         dotsContainer.style.width = '100%';
         dotsContainer.style.textAlign = 'center';
-    
+
         const dots = [];
         for (let i = 0; i < count; i++) {
             const dot = document.createElement('span');
@@ -339,41 +246,47 @@
             dot.style.cursor = 'pointer';
             dot.style.transition = 'background 0.3s';
             dot.dataset.index = i;
-    
+
             dot.addEventListener('click', () => {
                 currentIndex = i;
                 updateCarousel();
             });
-    
+
             dotsContainer.appendChild(dot);
             dots.push(dot);
         }
         carouselContainer.appendChild(dotsContainer);
-    
+
         let currentIndex = 0;
-    
+
         function updateCarousel() {
-            // Сдвигаем inner
             inner.style.marginLeft = `-${currentIndex * 100}%`;
-    
-            // Обновляем активную точку
             dots.forEach((dot, idx) => {
                 dot.style.background = idx === currentIndex ? '#f97316' : '#bbb';
             });
         }
-    
+
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + count) % count;
             updateCarousel();
         });
-    
+
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % count;
             updateCarousel();
         });
-    
-        // Инициализация
+
         updateCarousel();
     }
 
-})();   
+    // Делаем публичные методы доступными глобально
+    window.currentDetailKey = currentDetailKey;
+    window.currentVersions = currentVersions;
+    window.fillModal = fillModal;
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.rebuildCarousel = rebuildCarousel;
+    window.updateModalWithVersion = updateModalWithVersion;
+    window.populateVersionSelector = populateVersionSelector;
+
+})();

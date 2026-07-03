@@ -84,7 +84,6 @@ body::before {
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   /* From https://css.glass */
   background: #1f1818;
   background: linear-gradient(95deg, rgba(31, 24, 24, 0.53) 21%, rgba(249, 115, 22, 0.53) 80%);
@@ -93,9 +92,40 @@ body::before {
   -webkit-backdrop-filter: blur(8.9px);
   border-radius: 10px;
 }
+.header .language-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+.header .language-switcher .lang-btn {
+  background: transparent;
+  border: 1px solid #f97316;
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  color: white;
+  font-family: "involve";
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.header .language-switcher .lang-btn:hover {
+  background: #f97316;
+  color: black;
+}
+.header .language-switcher .lang-btn.active {
+  background: #f97316;
+  color: black;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+@media (max-width: 480px) {
+  .header .language-switcher .lang-btn {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+  }
+}
 .header__logo {
   width: 6rem;
   height: 4rem;
+  flex-shrink: 0;
 }
 @media (max-width: 768px) {
   .header__logo {
@@ -111,6 +141,9 @@ body::before {
 }
 .header__shortcuts {
   display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
   gap: 7rem;
   padding-right: 4rem;
   letter-spacing: 3px;
@@ -118,6 +151,7 @@ body::before {
 }
 .header__shortcuts p {
   cursor: pointer;
+  white-space: nowrap;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 .header__shortcuts p:hover {
@@ -1103,6 +1137,10 @@ body::before {
   filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.5));
   animation: float 6s infinite ease-in-out;
   border-radius: 10px;
+}
+
+body.lang-en .hero__title, body.lang-en .hero__subtitle {
+  font-family: "involve";
 }
 
 @keyframes float {
