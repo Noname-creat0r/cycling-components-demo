@@ -40,9 +40,9 @@ const translations = {
                         description: 'Обновлённая версия карбонового руля-приставки с улучшенной аэродинамикой и жёсткостью. Идеально для профессиональных гонок и триатлона.',
                         price: '700$',
                         images: [
-                            'img/carousel/wheel/v2/1.png',
-                            'img/carousel/wheel/v2/2.png',
-                            'img/carousel/wheel/v2/3.png',
+                            'img/carousel/wheel/v2/1.webp',
+                            'img/carousel/wheel/v2/2.webp',
+                            'img/carousel/wheel/v2/3.webp',
                         ]
                     }
                 ]
@@ -153,9 +153,9 @@ const translations = {
                         description: 'The Model-2 represents the continued development and refinement of the highly successful Model-1. The new Model-2 has been designed to comply with the updated UCI technical regulations taking effect on January 1, 2026. Its improved ergonomics and aerodynamic performance have already been tested in competition at the Belarusian National Championships, specifically in time trial (TT) and track events. Compared to the Model-1, this model features an armrest with increased length and volume, making it better suited for taller riders.',
                         price: '700$',
                         images: [
-                            'img/carousel/wheel/v2/1.png',
-                            'img/carousel/wheel/v2/2.png',
-                            'img/carousel/wheel/v2/3.png',
+                            'img/carousel/wheel/v2/1.webp',
+                            'img/carousel/wheel/v2/2.webp',
+                            'img/carousel/wheel/v2/3.webp',
                         ]
                     }
                 ]
