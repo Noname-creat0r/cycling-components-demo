@@ -22,15 +22,28 @@
         opacity: 1;
     }
 
-    &__content {
+    // Контейнер-обёртка: позиционируется по центру экрана флексом .modal,
+    // а .modal__close живёт ВНЕ прокручиваемого .modal__content — благодаря
+    // этому крестик не обрезается overflow, не уезжает при прокрутке и не
+    // перекрывает заголовок/описание.
+    &__dialog {
         position: relative;
         width: 1000px;
         max-width: 90%;
+
+        @media (max-width: $mobile) {
+            max-width: 98%;
+        }
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
         max-height: 90vh;
         overflow: scroll;
 
         background: #26201e;
-        padding: 1em 2em;
+        padding: 1.5em 2em;
         box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
         border-radius: 4px;
 
@@ -39,20 +52,12 @@
         @media (max-width: $tablet) {
             padding: 0.8em 1.5em;
             padding-top: 3rem;
-            max-width: 90%;
         }
         
         @media (max-width: $mobile) {
             padding: 0.8rem 1rem;          // уменьшаем padding
             padding-top: 2.5rem;           // оставляем место для крестика
-            max-width: 98%;
-            
-            .modal__content {
-                padding: 0.8rem;
-                padding-top: 2.5rem;     // место для крестика
-                max-width: 98%;
-                max-height: 95vh;         // чуть больше, чем 90vh
-            }
+            max-height: 95vh;              // чуть больше, чем 90vh
 
             .modal__content__flex {
                 flex-direction: column;
@@ -107,14 +112,6 @@
                 width: 60%;
                 font-size: 1rem;
                 padding: 0.4rem;
-            }
-
-            .modal__close {
-                font-size: 2rem;             // чуть меньше
-                width: 40px;
-                height: 40px;
-                top: 5px;
-                right: 5px;
             }
         }
 
@@ -326,34 +323,56 @@
 
     &__close {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        color: #585858;
-        text-decoration: none;
-        
-        // Увеличиваем размер крестика
-        font-size: 2.5rem;        // базовый размер
-        line-height: 1;            // чтобы не создавать лишних отступов
-        width: 50px;               // опционально – фиксированная ширина для области клика
-        height: 50px;              // опционально – фиксированная высота
-        display: flex;             // центрирование символа внутри области
+        z-index: 5;
+        // Крестик живёт в .modal__dialog, ВНЕ прокручиваемого .modal__content.
+        // На десктопе он «висит» над правым верхним углом модалки — снаружи
+        // контента, поэтому никогда не перекрывает заголовок/описание, не
+        // обрезается overflow и не уезжает при прокрутке.
+        top: -24px;
+        right: 8px;
+
+        display: flex;
         align-items: center;
         justify-content: center;
-        
-         @media (max-width: $tablet) {
-            font-size: 2rem;            // уменьшаем размер
-            width: 40px;                // и область клика
-            height: 40px;
-            top: 5px;                   // можно немного сместить
-            right: 5px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+        line-height: 1;
+        font-family: "involve", sans-serif;
+
+        color: $orange;
+        background: rgba(38, 32, 30, 0.92);   // #26201e с прозрачностью
+        border: 1px solid $orange;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 5px 35px rgba(249, 115, 22, 0.3);
+        cursor: pointer;
+
+        transition: all .4s;
+
+        &:hover {
+            background: $orange;
+            color: #26201e;
+            box-shadow: 0 5px 35px rgba(249, 115, 22, 0.6);
+            transform: scale(1.06);
+        }
+
+        // На узких экранах места сверху мало — ставим внутрь, поверх
+        // зарезервированного padding-top у .modal__content.
+        @media (max-width: $tablet) {
+            top: 6px;
+            right: 6px;
+            width: 38px;
+            height: 38px;
+            font-size: 1.3rem;
         }
 
         @media (max-width: $mobile) {
-            font-size: 1.8rem;
-            width: 36px;
-            height: 36px;
-            top: 3px;
-            right: 3px;
+            top: 5px;
+            right: 5px;
+            width: 34px;
+            height: 34px;
+            font-size: 1.2rem;
         }
     }
 
