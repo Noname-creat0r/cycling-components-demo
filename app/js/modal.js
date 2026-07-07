@@ -4,6 +4,14 @@
     // Получаем данные из переводов
     const getDetails = () => window.translation.details();
 
+    // Счётчик сборок карусели. Каждая перестройка получает уникальный buildId,
+    // чтобы обработчики (onload/onerror) УСТАРЕВШИЙ сборки не влияли на текущую:
+    // если пользователь быстро переключает товары/версии, прошлые <img> ещё могут
+    // догрузиться и вызвать resolveFirst — без проверки они сняли бы is-loading
+    // или оставили скелетон у ЧУЖОЙ сборки. finish() действует только для активной сборки.
+    let currentBuildId = 0;
+
+
     // Функция получения версий для конкретной детали
     function getVersions(detailKey) {
         const details = getDetails();
@@ -155,6 +163,10 @@
         carouselContainer.innerHTML = '';
         carouselContainer.classList.add('is-loading');
 
+        // Уникальный идентификатор этой сборки. Все её обработчики будут
+        // проверять, что сборка всё ещё активна, прежде чем менять DOM.
+        const buildId = ++currentBuildId;
+
         const sliderWrapper = document.createElement('div');
         sliderWrapper.className = 'carousel__slider-wrapper';
 
@@ -169,17 +181,42 @@
         inner.style.width = `${count * 100}%`;
         inner.style.transition = 'margin-left 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
 
+        // Минимальное время показа скелетона: даже при мгновенной загрузке
+        // (кэш) анимация остаётся видимой — иначе на быстром соединении/
+        // смартфоне она мелькает слишком быстро, чтобы её заметить.
+        const MIN_SKELETON_MS = 500;
+
         // Сбрасывается при каждой перестройке карусели (смена версии):
         // function-scope → новый экземпляр на каждый вызов rebuildCarousel.
         let firstResolved = false;
+        let shownAt = 0;
         const resolveFirst = () => {
             if (firstResolved) return;
             firstResolved = true;
-            skeleton.remove();
-            carouselContainer.classList.remove('is-loading');
+            const finish = () => {
+                // Защита от устаревшей сборки: если пользователь уже перестроил
+                // карусель (switch/другой товар), эта сборка больше не активна —
+                // не трогаем DOM чужой сборки.
+                if (buildId !== currentBuildId) return;
+                skeleton.remove();
+                carouselContainer.classList.remove('is-loading');
+            };
+            // Если прошёл заведомо большой срок — убираем сразу; иначе
+            // дотягиваем до минимального времени показа через setTimeout.
+            const elapsed = Date.now() - shownAt;
+            if (elapsed >= MIN_SKELETON_MS) {
+                finish();
+            } else {
+                setTimeout(finish, MIN_SKELETON_MS - elapsed);
+            }
         };
 
-        images.forEach((src) => {
+        // СНАЧАЛА строим все <img> и вешаем обработчики, НО не ставим src.
+        // Это позволяет прикрепить скелетон к документу ДО того, как
+        // кэшированное изображение успеет синхронно разрешиться и вызвать
+        // resolveFirst() (иначе skeleton.remove() сработает на отсоединённом
+        // узле → скелетон останется в DOM навсегда = бесконечная загрузка).
+        const pendingImgs = images.map((src) => {
             const article = document.createElement('article');
             article.style.width = `${100 / count}%`;
 
@@ -203,21 +240,27 @@
                 resolveFirst();
             };
 
-            img.src = src;
-
-            // Кэшированные изображения могут разрешиться синхронно — тогда
-            // onload не вызовется. Проверяем вручную после присвоения src.
-            if (img.complete && img.naturalWidth > 0) {
-                img.onload();
-            }
-
             article.appendChild(img);
             inner.appendChild(article);
+            return { img, src };
         });
 
+        // Скелетон попадает в документ ДО установки src → resolveFirst()
+        // корректно удалит его и при синхронной (кэш), и при асинхронной
+        // (сеть) загрузке. Фиксируем время показа в момент подключения.
         sliderWrapper.appendChild(inner);
         sliderWrapper.appendChild(skeleton);
         carouselContainer.appendChild(sliderWrapper);
+        shownAt = Date.now();
+
+        // ТЕПЕРЬ ставим src: кэшированные могут разрешиться синхронно —
+        // тогда onload не вспыхнет, проверяем вручную (скелетон уже в DOM).
+        pendingImgs.forEach(({ img, src }) => {
+            img.src = src;
+            if (img.complete && img.naturalWidth > 0) {
+                img.onload();
+            }
+        });
 
         const arrowsContainer = document.createElement('div');
         arrowsContainer.className = 'carousel__slider-prev-next-control';

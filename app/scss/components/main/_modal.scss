@@ -409,7 +409,9 @@
             #3a322f 75%
         );
         background-size: 200% 100%;
-        animation: shimmer 1.4s infinite linear;
+        // 2.2s вместо 1.4s: более спокойный, заметный «блик». На смартфонах
+        // по медленной сети анимация должна быть видна, а не мелькать.
+        animation: shimmer 2.2s infinite linear;
     }
 
     .carousel__inner__img {
