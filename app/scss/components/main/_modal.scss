@@ -381,3 +381,68 @@
         opacity: 1;
     }
 }
+
+// ── Состояния загрузки изображений карусели ───────────────────────
+// Скоупировано под .modal, чтобы не затронуть другие карусели.
+// Пока первый (текущий) слайд не загрузился, поверх области изображения
+// показывается shimmer-скелетон, а стрелки/точки скрыты.
+.modal {
+    // Тёмный фон-подложка: незагруженные слайды не мелькают белым
+    // (базовый _carousel.scss задаёт #fcfff4).
+    .carousel__slider-wrapper {
+        background: #2a2422;
+    }
+
+    // Скелетон поверх области изображения. Лежит в .carousel__slider-wrapper
+    // (overflow:hidden) → точно совпадает с габаритами картинки и обрезается
+    // по её border-radius.
+    .carousel__skeleton {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(
+            90deg,
+            #3a322f 25%,
+            #4a413d 50%,
+            #3a322f 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.4s infinite linear;
+    }
+
+    .carousel__inner__img {
+        transition: opacity 0.4s ease;
+
+        // Картинка невидима, пока не сработает onload — затем плавно
+        // проявляется (fade-in) за счёт transition выше.
+        &--loading {
+            opacity: 0;
+        }
+
+        // Плейсхолдер для сломанных изображений: наследует ширину/высоту/
+        // border-radius базового .carousel__inner__img, показывает текст.
+        &--error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            color: #8a807c;
+            font-family: "involve", sans-serif;
+            font-size: 0.9rem;
+            background: #2a2422;
+        }
+    }
+
+    // Пока первый слайд грузится — прячем управление, чтобы пользователь
+    // не переключился на ещё пустой слайд. visibility (а не display),
+    // чтобы макет не дёргался.
+    .carousel.is-loading {
+        .carousel__slider-prev-next-control,
+        .carousel__slider-dot-control {
+            visibility: hidden;
+        }
+    }
+}

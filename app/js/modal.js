@@ -153,28 +153,70 @@
         if (count === 0) return;
 
         carouselContainer.innerHTML = '';
+        carouselContainer.classList.add('is-loading');
 
         const sliderWrapper = document.createElement('div');
         sliderWrapper.className = 'carousel__slider-wrapper';
+
+        // Shimmer-скелетон поверх области изображения: показывается, пока
+        // не загрузится первый (текущий) слайд. Лежит внутри slider-wrapper,
+        // поэтому точно совпадает с габаритами картинки.
+        const skeleton = document.createElement('div');
+        skeleton.className = 'carousel__skeleton';
 
         const inner = document.createElement('div');
         inner.className = 'carousel__inner';
         inner.style.width = `${count * 100}%`;
         inner.style.transition = 'margin-left 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
 
+        // Сбрасывается при каждой перестройке карусели (смена версии):
+        // function-scope → новый экземпляр на каждый вызов rebuildCarousel.
+        let firstResolved = false;
+        const resolveFirst = () => {
+            if (firstResolved) return;
+            firstResolved = true;
+            skeleton.remove();
+            carouselContainer.classList.remove('is-loading');
+        };
+
         images.forEach((src) => {
             const article = document.createElement('article');
             article.style.width = `${100 / count}%`;
 
             const img = document.createElement('img');
-            img.src = src;
-            img.className = 'carousel__inner__img';
-            article.appendChild(img);
+            img.className = 'carousel__inner__img carousel__inner__img--loading';
 
+            // Обработчики вешаем ДО установки src, чтобы гарантированно
+            // поймать load/error (особенно для кэшированных картинок, где
+            // событие может не вспыхнуть после присвоения src).
+            img.onload = () => {
+                img.classList.remove('carousel__inner__img--loading');
+                resolveFirst();
+            };
+            img.onerror = () => {
+                // Прячем сломанный <img> и ставим локализованный плейсхолдер.
+                img.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.className = 'carousel__inner__img carousel__inner__img--error';
+                placeholder.textContent = window.translation.t('imageError');
+                article.appendChild(placeholder);
+                resolveFirst();
+            };
+
+            img.src = src;
+
+            // Кэшированные изображения могут разрешиться синхронно — тогда
+            // onload не вызовется. Проверяем вручную после присвоения src.
+            if (img.complete && img.naturalWidth > 0) {
+                img.onload();
+            }
+
+            article.appendChild(img);
             inner.appendChild(article);
         });
 
         sliderWrapper.appendChild(inner);
+        sliderWrapper.appendChild(skeleton);
         carouselContainer.appendChild(sliderWrapper);
 
         const arrowsContainer = document.createElement('div');

@@ -16,6 +16,7 @@ const translations = {
         // Модальное окно
         versionLabel: 'Выберите версию:',
         modalClose: 'Закрыть',
+        imageError: 'Изображение недоступно',
 
         // Данные товаров (полные описания)
         details: {
@@ -129,6 +130,7 @@ const translations = {
         // Модальное окно
         versionLabel: 'Select version:',
         modalClose: 'Close',
+        imageError: 'Image unavailable',
 
         // Данные товаров (аналогично, но на английском)
         details: {
