@@ -120,9 +120,15 @@
 
         &__flex {
             display: flex;
+            // Не растягиваем карусель по высоте колонки с длинным описанием:
+            // иначе индикаторы-точки (position: absolute; bottom) оказываются
+            // ниже изображения, а не на нём.
+            align-items: flex-start;
             
             @media (max-width: $tablet) {
                 flex-direction: column;
+                // В колонке возвращаем растяжение, чтобы элементы были во всю ширину.
+                align-items: stretch;
 
                 .carousel {
                     order: 1;       

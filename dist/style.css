@@ -540,10 +540,12 @@ body::before {
 }
 .modal__content__flex {
   display: flex;
+  align-items: flex-start;
 }
 @media (max-width: 768px) {
   .modal__content__flex {
     flex-direction: column;
+    align-items: stretch;
   }
   .modal__content__flex .carousel {
     order: 1;
